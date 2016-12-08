@@ -1,15 +1,15 @@
-<div class="title" md-colors="{color:'primary'}">Telefonos</div>
+<div class="title" md-colors="{color:'primary'}" >Equipos adicionales</div>
 <div layout="row"  layout-padding layout-align="start start">
 
-  <div  ng-repeat="item in lista" ng-if="item.categoria == 'Telefonos' ">
-  <md-card >
+  <div  ng-repeat="item in lista" ng-if="item.categoria == 'adicionales' ">
+  <md-card style="width:300px;" >
 
-    <img src="{{item.imagen}}" class="md-card-image"></img>
+    <img src="{{item.imagen}}" class="md-card-image" style="width:200px;"></img>
     <div class="form-group" style="margin-bottom:0px;">
       <div class="input-group">
         <div class="input-group-label" style="width:40%" ng-click="removeTelefono($index)">-</div>
 
-        <input ng-model="item.cantidad" type="number" placeholder="Cantidad" required="" disabled="true">
+        <input ng-model="item.cantidad" type="number" placeholder="Cantidad" required="">
         <div class="input-group-label" style="width:40%"  ng-click="addTelefono($index)">+</div>
       </div>
     </div>
@@ -47,6 +47,6 @@
   </div>
 
   <div layout="row" layout-align="end center">
-  <md-button class="md-raised" ui-sref="form.appliance" ng-click="limpiarLista()" ><h2 class="md-display">Atras</h2></md-button>
-  <md-button class="md-raised md-warn" ui-sref="form.adicionales"><h2 class="md-display">Siguiente</h2></md-button>
+  <md-button class="md-raised" ui-sref="form.appliance"><h2 class="md-display">Atras</h2></md-button>
+  <md-button class="md-raised md-warn" ui-sref="form.result"><h2 class="md-display">Siguiente</h2></md-button>
 </div>
