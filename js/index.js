@@ -40,6 +40,17 @@ angular
   .state('form.result', {
     url: '/result',
     templateUrl: 'form-result.html'
+  })
+
+  .state('form.adminusuarios', {
+    url: '/admin-usuarios',
+    templateUrl: 'admin-usuarios.html'
+
+  })
+  .state('form.adminproductos', {
+    url: '/admin-productos',
+    templateUrl: 'admin-productos.html'
+
   });
 
   // catch all route
@@ -48,7 +59,21 @@ angular
 })
 
 
-.controller('DemoCtrl', function($scope) {
+.controller('DemoCtrl', function($scope,$mdSidenav,$mdDialog) {
+
+
+  $scope.openLeftMenu = function() {
+      $mdSidenav('left').toggle();
+    };
+
+    $scope.isOpen = false;
+
+     $scope.demo = {
+       isOpen: false,
+       count: 0,
+       selectedDirection: 'left'
+     };
+
 
   $scope.tema = 'default';
   $scope.usuario='';
@@ -58,7 +83,46 @@ angular
   $scope.buscaShow=1;
   $scope.usuarioDisable=0;
 
+  $scope.formLogin ={};
+
+
+
   $scope.formData = {extensiones:0,analogos:0,digitales:0,TKSIP:0};
+
+  $scope.usuariosData ={};
+  $scope.productosData={};
+  $scope.productosList= [
+    {  tipo:'Hardware', categoria:'Telefonos', imagen:'img/banner_lxp100_es.png'  ,   cantidad:1,nombre: 'Gama Media',       descripcion:'Teléfono Gama Media ejecutivo con pantalla gráfica, 2 SIP, 3 Botones XML, PoE, Manos libres, Dual Switch, Audio HD, 5 Teclas Navegación, 10 Teclas Función',       precio: 89},
+    {  tipo:'Hardware', categoria:'Telefonos', imagen:'img/banner_lxp100_es.png',    cantidad:1,nombre: 'Directivo',       descripcion:'Teléfono Directivo con pantalla gráfica, 3 SIP, PoE, Manos libres, Dual Switch, Audio HD, 4 Teclas Programables',       precio: 120},
+    { tipo:'Hardware',  categoria:'Telefonos', imagen:'img/banner_lxp100_es.png',       cantidad:1,nombre: 'Operadora',       descripcion:'Teléfono de Operadora ejecutivo con pantalla gráfica, 3 SIP, PoE, Manos libres, Dual Switch, Audio HD, 4 Teclas Programables',       precio: 160},
+    {  tipo:'Hardware', categoria:'Codec',  cantidad:0,nombre: 'CODEC G.729',       descripcion:'Licencia Codec G.729',       precio: 320},
+    { categoria:'Mantenimiento', tipo:'Contrato', cantidad:0,nombre: 'ELX-PS-ABC-PACKAGE',       descripcion:'Paquete de 10 Horas Servicio Remoto Anual para Altas, Bajas & Cambios',       precio: 16200},
+    {  tipo:'Hardware', categoria:'adicionales', imagen:'img/2-elastix-sip-firewall.jpg'  ,   cantidad:1,nombre: 'Firewall',       descripcion:'Mantenga la seguridad de su red con este equipo',       precio: 14000},
+    {  tipo:'Hardware', categoria:'adicionales', imagen:'img/diadema.jpg'  ,   cantidad:1,nombre: 'Diadema',       descripcion:'Mantenga sus manos libre, mientras habla por telefono',       precio: 1400},
+    {  imagen: 'img/miniucs360_19.png', nombre:"NLX MiniUCS ",  descripcion:"The miniUCS G2 is a unified communications server designed for small and medium-sized businesses. The device comes with pre-installed Elastix software and telephony integration configurable according to the customer’s needs", precio:16400 , categoria:"Appliances", tipo:"Hardware" , cantidad:1 },
+    {  imagen: 'img/miniucs360_19.png', nombre:"NLX MiniUCS-1E1 ",  descripcion:"The miniUCS G2 is a unified communications server designed for small and medium-sized businesses. The device comes with pre-installed Elastix software and telephony integration configurable according to the customer’s needs", precio:30000  , categoria:"Appliances", tipo:"Hardware" , cantidad:1 },
+{  imagen: 'img/miniucs360_19.png', nombre:"NLX MiniUCS-4FX ",  descripcion:"The miniUCS G2 is a unified communications server designed for small and medium-sized businesses. The device comes with pre-installed Elastix software and telephony integration configurable according to the customer’s needs", precio:22700  , categoria:"Appliances", tipo:"Hardware" , cantidad:1 },
+{  imagen: 'img/miniucs360_19.png', nombre:"NLX MiniUCS-8FX ",  descripcion:"The miniUCS G2 is a unified communications server designed for small and medium-sized businesses. The device comes with pre-installed Elastix software and telephony integration configurable according to the customer’s needs", precio:30000  , categoria:"Appliances", tipo:"Hardware" , cantidad:1 },
+{  imagen: 'img/miniucs360_19.png', nombre:"ELX 025-SSD ",  descripcion:"The ELX025 G3 along with our Elastix software keep your business communications smooth, always keeping you in touch with customers, suppliers, and partners no matter where you are.", precio:33700  , categoria:"Appliances", tipo:"Hardware" , cantidad:1 },
+{  nombre:"A400P04 ",  descripcion:"Tarjeta Analogica", precio:6700  , categoria:"Tarjeta", tipo:"Hardware" , cantidad:1 },
+{  nombre:"UMG-100 RJ ",  descripcion:"Gateway UMG con 01 link E1 30 canales VoIP", precio:18400  , categoria:"Gateways", tipo:"Hardware" , cantidad:1 },
+{  nombre:"1E1DE – D130P/S ",  descripcion:"Tarjeta Digital", precio:23300  , categoria:"Tarjeta", tipo:"Hardware" , cantidad:1 },
+{  nombre:"Locales Mini ",  descripcion:"Servicios Profesionales Locales", precio:12000  , categoria:"Servicios", tipo:"Servicios" , cantidad:1 }
+];
+  $scope.usuarios = [
+    {nombre:"toga",password:"123",logo:"img/logo.svg",tema:"orange",privilegios: ["usuarios","productos","cotizacion"]},
+    {nombre:"maxcom",password:"123",logo:"img/maxcomlogo.png",tema:"red",privilegios: ["cotizacion"]}
+];
+
+$scope.privilegios = [
+  {privilegio:"usuario",ruta:"admin-usuarios.html"},
+  {privilegio:"productos",ruta:"admin-productos.html"},
+  {privilegio:"cotiacion",ruta:"admin-cotizacion.html"}
+];
+
+
+
+
 
 
 
@@ -168,6 +232,31 @@ angular
 
   ];
 
+  //admin-usuarios
+  $scope.editarUsuario = function(usuario, event) {
+    $mdDialog.show({
+           controller: 'DemoCtrl',
+           templateUrl: 'editaUsuario.tmpl.html',
+           parent: angular.element(document.body),
+           clickOutsideToClose:true
+         });
+ };
+
+ $scope.cancel = function() {
+  $mdDialog.hide();
+};
+
+//admin-productos
+$scope.editarProducto = function(produto, event) {
+  $mdDialog.show({
+         controller: 'DemoCtrl',
+         templateUrl: 'editaProductos.tmpl.html',
+         parent: angular.element(document.body),
+         clickOutsideToClose:true
+       });
+};
+
+
   $scope.removeTelefono = function(index){
     $scope.lista[index].cantidad -=1;
     if(index>0){
@@ -228,6 +317,8 @@ angular
     });
     return total;
   };
+
+
 
 
 
@@ -506,7 +597,7 @@ angular
 
 
     $scope.buscaUsuario = function() {
-      if ($scope.usuario=='toga') {
+      if ($scope.formLogin.usuario=='toga') {
         $scope.tema='orange';
         $scope.logo='img/logo.svg';
         $scope.passwordShow=1;
@@ -514,7 +605,7 @@ angular
         $scope.usuarioDisable=1;
 
 
-      }else if ($scope.usuario=='maxcom') {
+      }else if ($scope.formLogin.usuario=='maxcom') {
         $scope.tema='red';
         $scope.logo='img/maxcomlogo.png';
         $scope.passwordShow=1;
@@ -559,12 +650,12 @@ angular
 
     $mdThemingProvider.theme('red')
     .primaryPalette('red')
-    .accentPalette('pink')
+    .accentPalette('blue')
     .warnPalette('red');
 
     $mdThemingProvider.theme('orange')
     .primaryPalette('orange')
-    .accentPalette('pink')
+    .accentPalette('blue')
     .warnPalette('red');
 
     $mdThemingProvider.alwaysWatchTheme(true);

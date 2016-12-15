@@ -1,4 +1,7 @@
+
+
 <!-- form.html -->
+
 
 
     <div id="form-container" >
@@ -9,6 +12,8 @@
             <!-- the links to our nested states using relative paths -->
             <!-- add the active class if the state matches our ui-sref -->
             <div layout="row" layout-align="center center">
+
+
             <div id="status-buttons" flex="70" >
                 <a ui-sref-active="active" ui-sref=".bienvenida" class="inactiveLink"><span></span></a>
                 <a ui-sref-active="active" ui-sref=".appliance" class="inactiveLink"><span></span></a>
@@ -20,6 +25,22 @@
             <div >
 <img class="md-user-avatar" src="{{logo}}"  style="width:200px;"/></div>
 </div>
+<md-fab-toolbar md-open="demo.isOpen" count="demo.count"
+                  md-direction="{{demo.selectedDirection}}">
+    <md-fab-trigger class="align-with-text">
+      <md-button aria-label="menu" class="md-fab md-primary">
+        <md-icon md-svg-src="img/icons/menu.svg"></md-icon>
+      </md-button>
+    </md-fab-trigger>
+
+    <md-toolbar>
+      <md-fab-actions class="md-toolbar-tools">
+      <md-button style="color:white;" ui-sref="form.adminusuarios"><md-icon md-svg-src="img/icons/ic_comment_24px.svg"></md-icon>Administrar Usuarios </md-button>
+      <md-button style="color:white;" ui-sref="form.adminproductos" ><md-icon md-svg-src="img/icons/ic_comment_24px.svg"></md-icon> Administrar Productos </md-button>
+      <md-button style="color:white;" ><md-icon md-svg-src="img/icons/ic_comment_24px.svg"></md-icon> Administrar Cotizaciones </md-button>
+      </md-fab-actions>
+    </md-toolbar>
+  </md-fab-toolbar>
             <md-divider></md-divider>
 
 

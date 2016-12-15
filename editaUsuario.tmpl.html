@@ -1,0 +1,42 @@
+<md-dialog aria-label="HiRez.io Login">
+      <md-toolbar >
+        <div class="md-toolbar-tools">
+          <h2>Editar Usuario</h2>
+          <span flex></span>
+          <md-button class="md-icon-button" ng-click="cancel()">
+            <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Cancel"></md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
+      <md-dialog-content style="max-width:500px;max-height:600px; ">
+        <form name="editaUsuario">
+
+          <md-input-container class="md-block">
+            <label>Logo</label>
+            <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+            <input ng-model="usuario.nombre" type="text" name="nombre" >
+          </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Nombre</label>
+          <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+          <input ng-model="usuario.nombre" type="text" name="nombre" >
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Tema</label>
+          <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+          <input ng-model="usuario.nombre" type="text" name="nombre" >
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Privilegios</label>
+          <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+          <input ng-model="usuario.nombre" type="text" name="nombre" >
+        </md-input-container>
+
+      </form>
+      </md-dialog-content>
+      <md-dialog-actions layout="row" md-whiteframe="2">
+        <md-button ng-click="cancel()">Cancelar </md-button>
+        <md-button ng-click="login()" md-autofocus class="md-raised md-primary"> Guardar </md-button>
+      </md-dialog-actions>
+    </md-dialog>

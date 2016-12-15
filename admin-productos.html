@@ -1,0 +1,56 @@
+<div layout="column"       layout-align="center center">
+
+    <md-input-container class="md-icon-float md-block">
+    <!-- Use floating label instead of placeholder -->
+    <label>Buscar productos</label>
+    <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+    <input ng-model="productosData.searchProduct" type="text">
+  </md-input-container>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+      <tr>
+        <td>
+            Imagen
+        </td>
+        <td>
+          Tipo
+        </td>
+        <td>
+          Categoria
+        </td>
+        <td>
+          Nombre
+        </td>
+        <td>
+          Descripcion
+        </td>
+        <td>
+          Precio
+        </td>
+        <td>
+
+        </td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr  ng-repeat="producto in productosList | filter:productosData.searchProduct">
+        <td><img alt="{{ producto.nombre }}" ng-src="{{ producto.imagen }}" class="md-avatar" style="width: 100px;"/> </td>
+        <td>{{ producto.tipo  }}</td>
+        <td>{{ producto.categoria}}</td>
+        <td>{{ producto.nombre  }}</td>
+        <td>{{ producto.descripcion}}</td>
+        <td>{{ producto.precio  }}</td>
+
+<td>          <md-button  ng-click="editarProducto(producto, $event)">
+            Editar
+          </md-button></td>
+
+      </tr>
+    </tbody>
+
+  </table>
+
+  </div>

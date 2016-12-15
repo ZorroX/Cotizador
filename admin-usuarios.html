@@ -1,0 +1,49 @@
+<div layout="column"       layout-align="center center">
+  
+    <md-input-container class="md-icon-float md-block">
+    <!-- Use floating label instead of placeholder -->
+    <label>Buscar usuario</label>
+    <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+    <input ng-model="usuariosData.searchUser" type="text">
+  </md-input-container>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+      <tr>
+        <td>
+            Logo
+        </td>
+        <td>
+          Nombre
+        </td>
+        <td>
+          Tema
+        </td>
+        <td>
+          Privilegios
+        </td>
+        <td>
+
+        </td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr  ng-repeat="usuario in usuarios | filter:usuariosData.searchUser">
+        <td><img alt="{{ usuario.nombre }}" ng-src="{{ usuario.logo }}" class="md-avatar" style="width: 100px;"/> </td>
+        <td>{{ usuario.nombre  }}</td>
+        <td>{{ usuario.tema  }}</td>
+        <td><ul>
+    <li ng-repeat="privilegio in usuario.privilegios">{{privilegio}}</li>
+</ul></td>
+<td>          <md-button  ng-click="editarUsuario(usuario, $event)">
+            Editar
+          </md-button></td>
+
+      </tr>
+    </tbody>
+
+  </table>
+
+  </div>
