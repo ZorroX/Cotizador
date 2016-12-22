@@ -2,14 +2,15 @@
 
 
 <div class="title" md-colors="{color:'primary'}">Bienvenido {{usuario}}</div>
-<div class="description">A continuacion te ayudaremos a seleccionar el paquete de productos que se ajusten a tus necesidades.
-Solo tienes que responder las preguntas basicas de configuracion de tu equipo y
-al final se te presentara la lista de productos que necesitas.</div>
+<div class="description">A continuación te ayudaremos a seleccionar el paquete de productos que se ajusten a tus necesidades.
+  Solo tienes que responder las preguntas basicas de configuración de tu equipo y al final se te presentara
+  la lista de productos que necesitas.</div>
 
 <div style="width:300px;">
+  <form name="bienvenida">
 <div class="form-group">
   <div class="input-group">
-    <input ng-model="formData.proyecto" type="text" placeholder="Nombre"  >
+    <input ng-model="formData.proyecto" type="text" placeholder="Nombre" required >
     <div class="input-group-label" style="width:60%">Proyecto</div>
 
   </div>
@@ -18,11 +19,12 @@ al final se te presentara la lista de productos que necesitas.</div>
 
 <div class="form-group">
   <div class="input-group">
-    <input ng-model="formData.contacto" type="text" placeholder="Nombre">
+    <input ng-model="formData.contacto" type="text" placeholder="Nombre" required>
     <div class="input-group-label" style="width:60%">Contacto</div>
 
   </div>
   <div class="form-helper">Identificacion del cliente al que se dirige </div>
 </div>
 </div>
-<div layout="row" layout-align="center end"><md-button class="md-raised" ui-sref="form.appliance" style="width:100%;"><h2 class="md-display">Comenzar</h2></md-button></div>
+<div layout="row" layout-align="center end"><md-button ng-disabled="bienvenida.$invalid" class="md-raised" ui-sref="form.appliance" style="width:100%;"><h2 class="md-display">Comenzar</h2></md-button></div>
+</form>

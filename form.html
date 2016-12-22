@@ -4,6 +4,7 @@
 
 
 
+
     <div id="form-container" >
 
 
@@ -35,9 +36,8 @@
 
     <md-toolbar>
       <md-fab-actions class="md-toolbar-tools">
-      <md-button style="color:white;" ui-sref="form.adminusuarios"><md-icon md-svg-src="img/icons/ic_comment_24px.svg"></md-icon>Administrar Usuarios </md-button>
-      <md-button style="color:white;" ui-sref="form.adminproductos" ><md-icon md-svg-src="img/icons/ic_comment_24px.svg"></md-icon> Administrar Productos </md-button>
-      <md-button style="color:white;" ><md-icon md-svg-src="img/icons/ic_comment_24px.svg"></md-icon> Administrar Cotizaciones </md-button>
+
+      <md-button ng-repeat="privilegio in privilegios" style="color:white;" ui-sref={{privilegio.ref}}><md-icon md-svg-src={{privilegio.icono}}></md-icon>{{privilegio.nombre}} </md-button>
       </md-fab-actions>
     </md-toolbar>
   </md-fab-toolbar>
@@ -46,11 +46,11 @@
 
 
         <!-- use ng-submit to catch the form submission and use our Angular function -->
-        <form id="signup-form">
+        <div id="signup-form">
 
             <!-- our nested state views will be injected here -->
             <div id="form-views" ui-view></div>
-        </form>
+        </div>
 
 
 

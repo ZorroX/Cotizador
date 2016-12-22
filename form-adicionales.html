@@ -1,6 +1,6 @@
 <div class="title" md-colors="{color:'primary'}" >Equipos adicionales</div>
 <div layout="row"  layout-padding layout-align="start start">
-
+  <md-content flex layout="row" >
   <div  ng-repeat="item in lista" ng-if="item.categoria == 'adicionales' ">
   <md-card style="width:300px;" >
 
@@ -45,8 +45,8 @@
     </div>
 
   </div>
-
+</md-content>
   <div layout="row" layout-align="end center">
-  <md-button class="md-raised" ui-sref="form.appliance"><h2 class="md-display">Atras</h2></md-button>
+  <md-button class="md-raised" ui-sref="form.telefonos"><h2 class="md-display">Atras</h2></md-button>
   <md-button class="md-raised md-warn" ui-sref="form.result"><h2 class="md-display">Siguiente</h2></md-button>
 </div>

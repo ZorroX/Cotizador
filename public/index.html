@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Toga</title>
+    <!-- AngularJS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
+
+  <!-- AngularFire -->
+  <script src="https://cdn.firebase.com/libs/angularfire/2.1.0/angularfire.min.js"></script>
+  <script src="app.js"></script>
+  </head>
+  <body ng-app="cotizadorToga">
+    <div id="message" ng-controller="MyCtrl as ctrl">
+      <p class="text-center">
+    <a href="#" class="btn btn-primary" ng-click="reset()">Reset</a>
+  </p>
+  <ul>
+<li ng-repeat="usuario in usuarios"> {{usuario.nombre}}</li>
+  </ul>
+
+  <form>
+          <div>Nombre: <input ng-model="usuarioData.nombre" /></div>
+      <div>Password: <input ng-model="usuarioData.password" /></div>
+      <div>Grupo: <select ng-model="usuarioData.grupo" ng-options="grupo.nombre for grupo in grupos" value="{{grupo.id}}"></select></div>
+      <button ng-click="userSave()">Save</button>
+      </form>
+
+      <pre>
+{{privilegiosAll|json}}
+    </pre>
+
+    </div>
+
+  </body>
+</html>

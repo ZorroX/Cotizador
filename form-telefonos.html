@@ -1,8 +1,9 @@
 <div class="title" md-colors="{color:'primary'}">Telefonos</div>
 <div layout="row"  layout-padding layout-align="start start">
+  <md-content flex layout="row" >
 
   <div  ng-repeat="item in lista" ng-if="item.categoria == 'Telefonos' ">
-  <md-card >
+  <md-card style="max-width: 400px;" >
 
     <img src="{{item.imagen}}" class="md-card-image"></img>
     <div class="form-group" style="margin-bottom:0px;">
@@ -45,6 +46,8 @@
     </div>
 
   </div>
+  </md-content>
+
 
   <div layout="row" layout-align="end center">
   <md-button class="md-raised" ui-sref="form.appliance" ng-click="limpiarLista()" ><h2 class="md-display">Atras</h2></md-button>
